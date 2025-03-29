@@ -11,9 +11,13 @@ while (true) {
   console.log("3. Tìm kiếm sinh viên");
   console.log("4. Cập nhật thông tin sinh viên");
   console.log("5. Quản lý khoa, tình trạng, chương trình");
-  console.log("6. Thoát");
+  console.log("6. Export CSV");
+  console.log("7. Import CSV");
+  console.log("8. Export JSON");
+  console.log("9. Import JSON");
+  console.log("10. Thoát");
 
-  const choice = prompt("Chọn chức năng (1-6): ");
+  const choice = prompt("Chọn chức năng (1-10): ");
 
   switch (choice) {
     case "1":
@@ -138,6 +142,20 @@ while (true) {
 
       break;
     case "6":
+      manager.handleExportCSV();
+      break;
+    case "7":
+      const filePath = prompt("Nhập đường dẫn file CSV để Import: ");
+      manager.handleImportCSV(filePath);
+      break;
+    case "8":
+      manager.handleExportJSON();
+      break;
+    case "9":
+      const jsonFilePath = prompt("Nhập đường dẫn file JSON để Import: ");
+      manager.handleImportJSON(jsonFilePath);
+      break;
+    case "10":
       console.log("Thoát chương trình.");
       process.exit(0);
       break;

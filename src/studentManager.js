@@ -1,4 +1,4 @@
-const Student = require("./student");
+const { exportCSV, importCSV, readJSON, writeJSON } = require("./utils/fileHandler");
 
 class StudentManager {
   constructor() {
@@ -137,7 +137,7 @@ class StudentManager {
       console.log("Khoa này đã tồn tại.\n");
     }
   }
-  
+
   addStatus(newStatus) {
     if (!this.statuses.includes(newStatus)) {
       this.statuses.push(newStatus);
@@ -146,7 +146,7 @@ class StudentManager {
       console.log("Tình trạng sinh viên này đã tồn tại.\n");
     }
   }
-  
+
   addProgram(newProgram) {
     if (!this.programs.includes(newProgram)) {
       this.programs.push(newProgram);
@@ -165,7 +165,7 @@ class StudentManager {
       console.log("Không tìm thấy khoa để đổi tên.\n");
     }
   }
-  
+
   renameStatus(oldName, newName) {
     const index = this.statuses.indexOf(oldName);
     if (index !== -1) {
@@ -175,7 +175,7 @@ class StudentManager {
       console.log("Không tìm thấy tình trạng sinh viên để đổi tên.\n");
     }
   }
-  
+
   renameProgram(oldName, newName) {
     const index = this.programs.indexOf(oldName);
     if (index !== -1) {
@@ -185,7 +185,43 @@ class StudentManager {
       console.log("Không tìm thấy chương trình để đổi tên.\n");
     }
   }
-  
+
+  // Export CSV
+  handleExportCSV() {
+    exportCSV(this.students);
+  }
+
+  // Import CSV
+  handleImportCSV(filePath) {
+    importCSV(filePath, this.students);
+  }
+
+  // Export JSON
+  handleExportJSON() {
+    const studentsData = this.students.map(student => ({
+        mssv: student.mssv,
+        name: student.name,
+        dob: student.dob,
+        gender: student.gender,
+        faculty: student.faculty,
+        course: student.course,
+        program: student.program,
+        address: student.address,
+        email: student.email,
+        phone: student.phone,
+        status: student.status,
+    }));
+    
+    writeJSON(studentsData);
+    console.log(`Export JSON thành công tại: ./export/students.json`);
+  }
+
+  // Import JSON
+  handleImportJSON(filePath) {
+    const data = readJSON(filePath);
+    this.students = data;
+    console.log(`Import JSON thành công từ file: ${filePath}`);
+  }
 }
 
 module.exports = StudentManager;

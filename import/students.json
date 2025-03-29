@@ -1,0 +1,15 @@
+[
+  {
+    "mssv": "18120515",
+    "name": "Doan",
+    "dob": "01/04/2000",
+    "gender": "nam",
+    "faculty": "Khoa Luat",
+    "course": "2018",
+    "program": "Chinh quy",
+    "address": "hcm",
+    "email": "xcvxcv@gmail.com",
+    "phone": "0384454545",
+    "status": "Dang hoc"
+  }
+]
