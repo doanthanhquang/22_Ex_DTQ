@@ -3,11 +3,26 @@ const Student = require("./student");
 class StudentManager {
   constructor() {
     this.students = [];
+
+    this.faculties = [
+      "Khoa Luat",
+      "Khoa Tieng Anh thuong mai",
+      "Khoa Tieng Nhat",
+      "Khoa Tieng Phap",
+    ];
+    this.statuses = [
+      "Dang hoc",
+      "Da tot nghiep",
+      "Da thoi hoc",
+      "Tam dung hoc",
+    ];
+    this.programs = ["Chinh quy"];
   }
 
   addStudent(student) {
     this.students.push(student);
     console.log("Thêm sinh viên thành công!\n");
+    console.log("==============================================================");
   }
 
   updateStudent(mssv, prompt) {
@@ -32,7 +47,11 @@ class StudentManager {
     }
 
     student.course = this.updateField("Khóa", student.course, prompt);
-    student.program = this.updateField("Chương trình", student.program, prompt);
+    while (true) {
+      student.program = this.updateField("Chương trình", student.program, prompt);
+      if (this.validateProgram(student.program)) break;
+      console.log("Chương trình không hợp lệ! Vui lòng nhập lại.");
+    }
     student.address = this.updateField("Địa chỉ", student.address, prompt);
 
     while (true) {
@@ -54,6 +73,7 @@ class StudentManager {
     }
 
     console.log("Cập nhật thông tin sinh viên thành công!\n");
+    console.log("==============================================================");
   }
 
   updateField(fieldName, currentValue, prompt) {
@@ -66,8 +86,10 @@ class StudentManager {
     if (index !== -1) {
       this.students.splice(index, 1);
       console.log("Xóa sinh viên thành công!\n");
+      console.log("==============================================================");
     } else {
       console.log("Không tìm thấy sinh viên với MSSV đã nhập.\n");
+      console.log("==============================================================");
     }
   }
 
@@ -81,6 +103,7 @@ class StudentManager {
       found.forEach((student) => console.log(student));
     } else {
       console.log("Không tìm thấy sinh viên nào.\n");
+      console.log("==============================================================");
     }
   }
 
@@ -95,24 +118,74 @@ class StudentManager {
   }
 
   validateFaculty(faculty) {
-    const validFaculties = [
-      "Khoa Luat",
-      "Khoa Tieng Anh thuong mai",
-      "Khoa Tieng Nhat",
-      "Khoa Tieng Phap",
-    ];
-    return validFaculties.includes(faculty);
+    return this.faculties.includes(faculty);
+  }
+
+  validateProgram(program) {
+    return this.programs.includes(program);
   }
 
   validateStatus(status) {
-    const validStatuses = [
-      "Dang hoc",
-      "Da tot nghiep",
-      "Da thoi hoc",
-      "Tam dung hoc",
-    ];
-    return validStatuses.includes(status);
+    return this.statuses.includes(status);
   }
+
+  addFaculty(newFaculty) {
+    if (!this.faculties.includes(newFaculty)) {
+      this.faculties.push(newFaculty);
+      console.log(`Đã thêm khoa mới: ${newFaculty}\n`);
+    } else {
+      console.log("Khoa này đã tồn tại.\n");
+    }
+  }
+  
+  addStatus(newStatus) {
+    if (!this.statuses.includes(newStatus)) {
+      this.statuses.push(newStatus);
+      console.log(`Đã thêm tình trạng sinh viên mới: ${newStatus}\n`);
+    } else {
+      console.log("Tình trạng sinh viên này đã tồn tại.\n");
+    }
+  }
+  
+  addProgram(newProgram) {
+    if (!this.programs.includes(newProgram)) {
+      this.programs.push(newProgram);
+      console.log(`Đã thêm chương trình mới: ${newProgram}\n`);
+    } else {
+      console.log("Chương trình này đã tồn tại.\n");
+    }
+  }
+
+  renameFaculty(oldName, newName) {
+    const index = this.faculties.indexOf(oldName);
+    if (index !== -1) {
+      this.faculties[index] = newName;
+      console.log(`Đã đổi tên khoa từ "${oldName}" thành "${newName}".\n`);
+    } else {
+      console.log("Không tìm thấy khoa để đổi tên.\n");
+    }
+  }
+  
+  renameStatus(oldName, newName) {
+    const index = this.statuses.indexOf(oldName);
+    if (index !== -1) {
+      this.statuses[index] = newName;
+      console.log(`Đã đổi tên tình trạng sinh viên từ "${oldName}" thành "${newName}".\n`);
+    } else {
+      console.log("Không tìm thấy tình trạng sinh viên để đổi tên.\n");
+    }
+  }
+  
+  renameProgram(oldName, newName) {
+    const index = this.programs.indexOf(oldName);
+    if (index !== -1) {
+      this.programs[index] = newName;
+      console.log(`Đã đổi tên chương trình từ "${oldName}" thành "${newName}".\n`);
+    } else {
+      console.log("Không tìm thấy chương trình để đổi tên.\n");
+    }
+  }
+  
 }
 
 module.exports = StudentManager;
