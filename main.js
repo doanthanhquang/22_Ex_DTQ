@@ -44,7 +44,6 @@ while (true) {
           if (manager.validateProgram(program)) break;
           console.log("Chương trình không hợp lệ! Vui lòng nhập lại.");
         }
-        const address = prompt("Địa chỉ: ");
 
         let email;
         while (true) {
@@ -70,19 +69,50 @@ while (true) {
           console.log("Tình trạng sinh viên không hợp lệ! Vui lòng nhập lại.");
         }
 
-        const student = new Student(
-          mssv,
-          name,
-          dob,
-          gender,
-          faculty,
-          course,
-          program,
-          address,
-          email,
-          phone,
-          status
-        );
+        const addresses = {
+          permanent: prompt("Địa chỉ thường trú: "),
+          temporary: prompt("Địa chỉ tạm trú: "),
+          mailing: prompt("Địa chỉ nhận thư: "),
+        };
+
+        const idDocuments = {};
+
+        console.log("\nChọn loại giấy tờ tùy thân:");
+        console.log("1. CMND");
+        console.log("2. CCCD");
+        console.log("3. Hộ chiếu");
+
+        const idChoice = prompt("Chọn loại giấy tờ (1-3): ");
+
+        if (idChoice === "1") {
+          idDocuments.cmnd = {
+            number: prompt("Số CMND: "),
+            issuedDate: prompt("Ngày cấp CMND: "),
+            issuedBy: prompt("Nơi cấp CMND: "),
+            expiryDate: prompt("Ngày hết hạn CMND: "),
+          };
+        } else if (idChoice === "2") {
+          idDocuments.cccd = {
+            number: prompt("Số CCCD: "),
+            issuedDate: prompt("Ngày cấp CCCD: "),
+            issuedBy: prompt("Nơi cấp CCCD: "),
+            expiryDate: prompt("Ngày hết hạn CCCD: "),
+            hasChip: prompt("Có gắn chip không? (true/false): ") === 'true',
+          };
+        } else if (idChoice === "3") {
+          idDocuments.passport = {
+            number: prompt("Số hộ chiếu: "),
+            issuedDate: prompt("Ngày cấp hộ chiếu: "),
+            expiryDate: prompt("Ngày hết hạn hộ chiếu: "),
+            issuedBy: prompt("Nơi cấp hộ chiếu: "),
+            country: prompt("Quốc gia cấp hộ chiếu: "),
+            notes: prompt("Ghi chú: "),
+          };
+        }
+
+        const nationality = prompt("Quốc tịch: ");
+
+        const student = new Student(mssv, name, dob, gender, faculty, course, program, email, phone, status, addresses, idDocuments, nationality);
         manager.addStudent(student);
         logger.info(`Đã thêm sinh viên: ${mssv} - ${name}`);
         break;

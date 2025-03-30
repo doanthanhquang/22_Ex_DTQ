@@ -1,15 +1,56 @@
 [
   {
-    "mssv": "18120515",
-    "name": "Doan",
-    "dob": "01/04/2000",
-    "gender": "nam",
+    "mssv": "18120440",
+    "name": "quang",
+    "dob": "01/12/2000",
+    "gender": "nnam",
     "faculty": "Khoa Luat",
     "course": "2018",
     "program": "Chinh quy",
-    "address": "hcm",
-    "email": "xcvxcv@gmail.com",
-    "phone": "0384454545",
-    "status": "Dang hoc"
+    "addresses": {
+      "permanent": "qt",
+      "temporary": "tp hcm",
+      "mailing": "tp hhcm"
+    },
+    "email": "tq@gmail.com",
+    "phone": "0934234343",
+    "status": "Dang hoc",
+    "idDocuments": {
+      "cccd": {
+        "number": "045200003433",
+        "issuedDate": "12/2/2025",
+        "issuedBy": "quanng tri",
+        "expiryDate": "01/12/2040",
+        "hasChip": true
+      }
+    },
+    "nationality": "Viet nam"
+  },
+  {
+    "mssv": "18120449",
+    "name": "quang",
+    "dob": "01/12/2000",
+    "gender": "nnam",
+    "faculty": "Khoa Luat",
+    "course": "2018",
+    "program": "Chinh quy",
+    "addresses": {
+      "permanent": "qt",
+      "temporary": "tp hcm",
+      "mailing": "tp hhcm"
+    },
+    "email": "tq@gmail.com",
+    "phone": "0934234343",
+    "status": "Dang hoc",
+    "idDocuments": {
+      "cccd": {
+        "number": "045200003433",
+        "issuedDate": "12/2/2025",
+        "issuedBy": "quanng tri",
+        "expiryDate": "01/12/2040",
+        "hasChip": true
+      }
+    },
+    "nationality": "Viet nam"
   }
 ]

@@ -1,5 +1,5 @@
 class Student {
-  constructor(mssv, name, dob, gender, faculty, course, program, address, email, phone, status) {
+  constructor(mssv, name, dob, gender, faculty, course, program, email, phone, status, addresses, idDocuments, nationality) {
       this.mssv = mssv;
       this.name = name;
       this.dob = dob;
@@ -7,10 +7,12 @@ class Student {
       this.faculty = faculty;
       this.course = course;
       this.program = program;
-      this.address = address;
       this.email = email;
       this.phone = phone;
       this.status = status;
+      this.addresses = addresses;
+      this.idDocuments = idDocuments;
+      this.nationality = nationality;
   }
 }
 

@@ -17,6 +17,18 @@ class StudentManager {
       "Tam dung hoc",
     ];
     this.programs = ["Chinh quy"];
+
+    this.nationalities = [];
+    this.addresses = {
+      permanent: '',
+      temporary: '',
+      mailing: '',
+    };
+    this.idDocuments = {
+      cmnd: { number: '', issuedDate: '', issuedBy: '', expiryDate: '' },
+      cccd: { number: '', issuedDate: '', issuedBy: '', expiryDate: '', hasChip: false },
+      passport: { number: '', issuedDate: '', expiryDate: '', issuedBy: '', country: '', notes: '' },
+    };
   }
 
   addStudent(student) {
@@ -52,7 +64,49 @@ class StudentManager {
       if (this.validateProgram(student.program)) break;
       console.log("Chương trình không hợp lệ! Vui lòng nhập lại.");
     }
-    student.address = this.updateField("Địa chỉ", student.address, prompt);
+
+    student.addresses.permanent = this.updateField("Địa chỉ thường trú", student.addresses.permanent, prompt);
+    student.addresses.temporary = this.updateField("Địa chỉ tạm trú", student.addresses.temporary, prompt);
+    student.addresses.mailing = this.updateField("Địa chỉ nhận thư", student.addresses.mailing, prompt);
+
+    const idDocuments = {};
+
+    console.log("\nChọn loại giấy tờ tùy thân:");
+    console.log("1. CMND");
+    console.log("2. CCCD");
+    console.log("3. Hộ chiếu");
+
+    const idChoice = prompt("Chọn loại giấy tờ (1-3): ");
+
+    if (idChoice === "1") {
+      idDocuments.cmnd = {
+        number: this.updateField("Số CMND", student.idDocuments?.cmnd?.number || "", prompt),
+        issuedDate: this.updateField("Ngày cấp CMND", student.idDocuments?.cmnd?.issuedDate || "", prompt),
+        issuedBy: this.updateField("Nơi cấp CMND", student.idDocuments?.cmnd?.issuedBy || "", prompt),
+        expiryDate: this.updateField("Ngày hết hạn CMND", student.idDocuments?.cmnd?.expiryDate || "", prompt),
+      };
+    } else if (idChoice === "2") {
+      idDocuments.cccd = {
+        number: this.updateField("Số CCCD", student.idDocuments?.cccd?.number || "", prompt),
+        issuedDate: this.updateField("Ngày cấp CCCD", student.idDocuments?.cccd?.issuedDate || "", prompt),
+        issuedBy: this.updateField("Nơi cấp CCCD", student.idDocuments?.cccd?.issuedBy || "", prompt),
+        expiryDate: this.updateField("Ngày hết hạn CCCD", student.idDocuments?.cccd?.expiryDate || "", prompt),
+        hasChip: this.updateField("Có gắn chip không? (true/false)", student.idDocuments?.cccd?.hasChip, prompt),
+      };
+    } else if (idChoice === "3") {
+      idDocuments.passport = {
+        number: this.updateField("Số hộ chiếu", student.idDocuments?.passport?.number || "", prompt),
+        issuedDate: this.updateField("Ngày cấp hộ chiếu", student.idDocuments?.passport?.issuedDate || "", prompt),
+        expiryDate: this.updateField("Ngày hết hạn hộ chiếu", student.idDocuments?.passport?.expiryDate || "", prompt),
+        issuedBy: this.updateField("Nơi cấp hộ chiếu", student.idDocuments?.passport?.issuedBy || "", prompt),
+        country: this.updateField("Quốc gia cấp hộ chiếu", student.idDocuments?.passport?.country || "", prompt),
+        notes: this.updateField("Ghi chú", student.idDocuments?.passport?.notes || "", prompt),
+      };
+    }
+
+    student.idDocuments = idDocuments;
+
+    student.nationality = this.updateField("Quốc tịch", student.nationality, prompt);
 
     while (true) {
       student.email = this.updateField("Email", student.email, prompt);
@@ -209,10 +263,12 @@ class StudentManager {
         faculty: student.faculty,
         course: student.course,
         program: student.program,
-        address: student.address,
+        addresses: student.addresses,
         email: student.email,
         phone: student.phone,
         status: student.status,
+        idDocuments: student.idDocuments,
+        nationality: student.nationality,
     }));
     
     writeJSON(studentsData);

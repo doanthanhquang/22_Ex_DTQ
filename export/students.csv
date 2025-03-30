@@ -1,2 +1,2 @@
-MSSV,Họ Tên,Ngày Sinh,Giới Tính,Khoa,Khóa,Chương Trình,Địa Chỉ,Email,Điện Thoại,Tình Trạng
-18120525,quang,01/12/2000,nam,Khoa Luat,2018,Chinh quy,hcm,tq@gmail.com,0943445655,Dang hoc
+MSSV,Họ Tên,Ngày Sinh,Giới Tính,Khoa,Khóa,Chương Trình,Địa chỉ thường trú,Địa chỉ tạm trú,Địa chỉ nhận thư,Loại giấy tờ,Số giấy tờ,Ngày cấp, Nơi cấp,Ngày hết hạn,Có chip,Quốc gia,Ghi chú,Email,Điện Thoại,Tình Trạng,Quốc tịch
+18120444,quang,01/12/2000,nnam,Khoa Luat,2018,Chinh quy,qt,tp hcm,tp hhcm,CCCD,045200003433,12/2/2025,quanng tri,01/12/2040,true,,,tq@gmail.com,0934234343,Dang hoc,Viet nam
