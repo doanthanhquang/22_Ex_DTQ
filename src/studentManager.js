@@ -93,12 +93,15 @@ class StudentManager {
     }
   }
 
-  searchStudent(keyword) {
-    const found = this.students.filter(
-      (student) =>
-        student.name.toLowerCase().includes(keyword.toLowerCase()) ||
-        student.mssv === keyword
-    );
+  searchStudent(keyword, faculty = null) {
+    const found = this.students.filter((student) => {
+      const matchName = student.name.toLowerCase().includes(keyword.toLowerCase());
+      const matchMSSV = student.mssv === keyword;
+      const matchFaculty = faculty ? student.faculty.toLowerCase().includes(faculty.toLowerCase()) : true;
+  
+      return (matchName || matchMSSV) && matchFaculty;
+    });
+  
     if (found.length) {
       found.forEach((student) => console.log(student));
     } else {

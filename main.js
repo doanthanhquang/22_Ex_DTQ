@@ -95,8 +95,9 @@ while (true) {
 
       case "3":
         const keyword = prompt("Nhập họ tên hoặc MSSV để tìm kiếm: ");
-        manager.searchStudent(keyword);
-        logger.info(`Tìm kiếm sinh viên với từ khóa: ${keyword}`);
+        const fac = prompt("Nhập khoa để tìm kiếm: ");
+        manager.searchStudent(keyword, fac);
+        logger.info(`Tìm kiếm sinh viên với từ khóa: ${keyword} - Khoa: ${fac}`);
         break;
       case "4":
         const updateMSSV = prompt("Nhập MSSV của sinh viên cần cập nhật: ");
